@@ -6,7 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
-public class MyService extends KafkaListener {
+public class MyService extends KafkaConsumer {
 
     @Autowired StringToIntService stringToIntService;
 
@@ -18,6 +18,7 @@ public class MyService extends KafkaListener {
     public INPUT_TYPE input_type;
 
     public void onNewMessage(String in){
+        System.out.println("Kafka Message: "+in);
         if(in.length()==0){
             input_type = INPUT_TYPE.EMPTY;
         }else{
